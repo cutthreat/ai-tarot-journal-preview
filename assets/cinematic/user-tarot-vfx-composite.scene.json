@@ -1,0 +1,172 @@
+{
+  "manifestVersion": "1.0.0",
+  "templateId": "user_tarot_video_generation_late_lock_v001",
+  "durationSec": 8.0,
+  "baseVideo": {
+    "url": "/assets/cinematic/user-tarot-vfx-composite.webm",
+    "width": 1280,
+    "height": 720,
+    "fps": 24.0
+  },
+  "timeline": [
+    {
+      "id": "hands_enter",
+      "start": 0.0,
+      "end": 1.0,
+      "activeCard": null,
+      "allowedMutation": "none"
+    },
+    {
+      "id": "place_left",
+      "start": 1.0,
+      "end": 1.9,
+      "activeCard": "left",
+      "allowedMutation": "place_face_down"
+    },
+    {
+      "id": "place_center",
+      "start": 1.9,
+      "end": 2.8,
+      "activeCard": "center",
+      "allowedMutation": "place_face_down"
+    },
+    {
+      "id": "place_right",
+      "start": 2.8,
+      "end": 3.8,
+      "activeCard": "right",
+      "allowedMutation": "place_face_down"
+    },
+    {
+      "id": "pause_all_face_down",
+      "start": 3.8,
+      "end": 4.5,
+      "activeCard": null,
+      "allowedMutation": "none"
+    },
+    {
+      "id": "flip_left",
+      "start": 4.5,
+      "end": 5.35,
+      "activeCard": "left",
+      "allowedMutation": "source_only_until_lock"
+    },
+    {
+      "id": "pause_left_open",
+      "start": 5.35,
+      "end": 6.0,
+      "activeCard": null,
+      "allowedMutation": "none"
+    },
+    {
+      "id": "flip_center",
+      "start": 6.0,
+      "end": 6.35,
+      "activeCard": "center",
+      "allowedMutation": "source_only_until_lock"
+    },
+    {
+      "id": "pause_center_open",
+      "start": 6.35,
+      "end": 6.55,
+      "activeCard": null,
+      "allowedMutation": "none"
+    },
+    {
+      "id": "flip_right",
+      "start": 6.55,
+      "end": 6.9,
+      "activeCard": "right",
+      "allowedMutation": "source_only_until_lock"
+    },
+    {
+      "id": "final_source_hold",
+      "start": 6.9,
+      "end": 8.0,
+      "activeCard": null,
+      "allowedMutation": "none"
+    }
+  ],
+  "cardPlanes": [
+    {
+      "position": "left",
+      "visibleFromSec": 5.35,
+      "fadeSec": 0.12,
+      "normalizedCorners": {
+        "topLeft": [
+          0.220312,
+          0.344444
+        ],
+        "topRight": [
+          0.372656,
+          0.344444
+        ],
+        "bottomRight": [
+          0.373437,
+          0.795833
+        ],
+        "bottomLeft": [
+          0.221094,
+          0.795833
+        ]
+      }
+    },
+    {
+      "position": "center",
+      "visibleFromSec": 6.35,
+      "fadeSec": 0.14,
+      "normalizedCorners": {
+        "topLeft": [
+          0.396875,
+          0.344444
+        ],
+        "topRight": [
+          0.55,
+          0.344444
+        ],
+        "bottomRight": [
+          0.550781,
+          0.797222
+        ],
+        "bottomLeft": [
+          0.397656,
+          0.797222
+        ]
+      }
+    },
+    {
+      "position": "right",
+      "visibleFromSec": 6.9,
+      "fadeSec": 0.16,
+      "normalizedCorners": {
+        "topLeft": [
+          0.574219,
+          0.344444
+        ],
+        "topRight": [
+          0.726562,
+          0.344444
+        ],
+        "bottomRight": [
+          0.727344,
+          0.797222
+        ],
+        "bottomLeft": [
+          0.575,
+          0.797222
+        ]
+      }
+    }
+  ],
+  "visualStrategy": {
+    "mode": "late_lock_tracked_composite",
+    "reason": "The source footage has no clean depth/occlusion pass, so card artwork is locked after each physical card plane is mostly flat. After lock, guarded per-frame plane refinement keeps the digital print closer to the physical card, then a strict hand occlusion matte reinserts hand pixels above the projected card layer.",
+    "knownLimits": [
+      "source is 8 seconds, not the target 12-second Unreal template",
+      "source has no hand-free clean final hold",
+      "tracking is deterministic contour refinement with fallback, not an object-ID/depth pass",
+      "hand occlusion uses deterministic color/geometry matte and a light shadow pass, not per-frame hand rotoscope",
+      "seamless extended hold needs controlled blank-card footage, a clean plate, masks/object IDs/depth, or Unreal/Movie Render output"
+    ]
+  }
+}
